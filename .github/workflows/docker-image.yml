@@ -24,7 +24,8 @@ jobs:
         run: |
           IMAGE="ghcr.io/${{ github.repository }}/deutsche-rechtsprechung-mcp"
           TAG="${{ github.sha }}"
-          docker build . --file mcp/Dockerfile --tag "${IMAGE}:${TAG}"
+          cd mcp
+          docker build . --tag "${IMAGE}:${TAG}"
           docker tag "${IMAGE}:${TAG}" "${IMAGE}:latest"
 
       - name: Push image
