@@ -9,6 +9,9 @@ spec:
       containers:
         - name: gerlaw-mcp-crawl
           image: gerlaw-mcp-crawl
+          resources:
+            requests:
+              cpu: "4"
           volumeMounts:
             - name: markdown-data
               mountPath: /app/data
