@@ -6,7 +6,7 @@ from tqdm import tqdm
 from xml_to_md import convert_xml_to_md_text
 
 EXTRACTED_DIR = "data/extracted"
-MARKDOWN_DIR = "../mcp/markdown"
+MARKDOWN_DIR = os.getenv("MARKDOWN_DIR", "../mcp/markdown")
 # Using ProcessPoolExecutor for CPU-bound XML parsing tasks
 MAX_WORKERS = os.cpu_count() or 4
 
