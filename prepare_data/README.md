@@ -52,3 +52,10 @@ python convert_all_to_md.py
 - `data/downloads/`: Rohdaten als ZIP-Dateien.
 - `data/extracted/`: Entpackte XML-Dateien.
 - `../mcp/markdown/`: Finale Markdown-Dateien, bereit für den OpenSearch-Import.
+
+## Docker
+
+Die Vorbereitung der Daten kann auch durch ein Docker Image ausgeführt werden:
+
+`docker build . -t gerlaw-mcp-crawl`
+`docker run -v ./data/:/app/data/ gerlaw-mcp-crawl`
