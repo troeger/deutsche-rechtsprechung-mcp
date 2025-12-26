@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gerlaw-mcp-crawl
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: gerlaw-mcp-crawl
+          image: gerlaw-mcp-crawl
+          volumeMounts:
+            - name: markdown-data
+              mountPath: /app/data
+      volumes:
+        - name: markdown-data
+          persistentVolumeClaim:
+            claimName: gerlaw-mcp-markdown

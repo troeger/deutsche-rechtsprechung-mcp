@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gerlaw-mcp-opensearch
+spec:
+  clusterIP: None
+  selector:
+    app: gerlaw-mcp-opensearch
+  ports:
+    - name: https
+      port: 9200
+      targetPort: 9200
+    - name: transport
+      port: 9300
+      targetPort: 9300

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gerlaw-mcp-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gerlaw-mcp-server
+  template:
+    metadata:
+      labels:
+        app: gerlaw-mcp-server
+    spec:
+      containers:
+        - name: gerlaw-mcp-server
+          image: gerlaw-mcp-server
+          ports:
+            - containerPort: 8002
+          env:
+            - name: OPENSEARCH_HOST
+              value: gerlaw-mcp-opensearch
+            - name: OPENSEARCH_PORT
+              value: "9200"
+            - name: OPENSEARCH_USER
+              value: admin
+            - name: OPENSEARCH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gerlaw-mcp-opensearch
+                  key: OPENSEARCH_ADMIN_PASSWORD
+            - name: MARKDOWN_DIR
+              value: /markdown_data
+          volumeMounts:
+            - name: markdown-data
+              mountPath: /markdown_data
+      volumes:
+        - name: markdown-data
+          persistentVolumeClaim:
+            claimName: gerlaw-mcp-markdown

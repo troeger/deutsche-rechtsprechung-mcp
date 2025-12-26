@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: gerlaw-mcp-opensearch
+spec:
+  serviceName: gerlaw-mcp-opensearch
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gerlaw-mcp-opensearch
+  template:
+    metadata:
+      labels:
+        app: gerlaw-mcp-opensearch
+    spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: opensearch
+          image: opensearchproject/opensearch:2
+          args:
+            - "-Ediscovery.type=single-node"
+          env:
+            - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gerlaw-mcp-opensearch
+                  key: OPENSEARCH_ADMIN_PASSWORD
+            - name: OPENSEARCH_JAVA_OPTS
+              value: "-Xms1g -Xmx1g"
+          ports:
+            - name: https
+              containerPort: 9200
+            - name: transport
+              containerPort: 9300
+          volumeMounts:
+            - name: gerlaw-mcp-opensearch
+              mountPath: /usr/share/opensearch/data
+  volumeClaimTemplates:
+    - metadata:
+        name: gerlaw-mcp-opensearch
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 20Gi
