@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gerlaw-mcp-opensearch
+  name: court-decisions-mcp-opensearch
 spec:
   clusterIP: None
   selector:
-    app: gerlaw-mcp-opensearch
+    app: court-decisions-mcp-opensearch
   ports:
     - name: https
       port: 9200

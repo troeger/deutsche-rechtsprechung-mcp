@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: gerlaw-mcp-markdown
+  name: court-decisions-mcp-markdown
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:

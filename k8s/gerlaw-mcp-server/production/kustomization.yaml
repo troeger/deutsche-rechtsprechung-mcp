@@ -5,6 +5,6 @@ resources:
   - ../base
 
 images:
-  - name: gerlaw-mcp-server
-    newName: ghcr.io/troeger/deutsche-rechtsprechung-mcp/gerlaw-mcp-server
+  - name: court-decisions-mcp-server
+    newName: ghcr.io/troeger/deutsche-rechtsprechung-mcp/court-decisions-mcp-server
     newTag: "latest"

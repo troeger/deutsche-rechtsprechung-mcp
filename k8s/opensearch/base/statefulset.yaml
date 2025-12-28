@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: gerlaw-mcp-opensearch
+  name: court-decisions-mcp-opensearch
 spec:
-  serviceName: gerlaw-mcp-opensearch
+  serviceName: court-decisions-mcp-opensearch
   replicas: 1
   selector:
     matchLabels:
-      app: gerlaw-mcp-opensearch
+      app: court-decisions-mcp-opensearch
   template:
     metadata:
       labels:
-        app: gerlaw-mcp-opensearch
+        app: court-decisions-mcp-opensearch
     spec:
       securityContext:
         runAsUser: 1000
@@ -25,7 +25,7 @@ spec:
             - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: gerlaw-mcp-opensearch
+                  name: court-decisions-mcp-opensearch
                   key: OPENSEARCH_ADMIN_PASSWORD
             - name: OPENSEARCH_JAVA_OPTS
               value: "-Xms1g -Xmx1g"
@@ -35,11 +35,11 @@ spec:
             - name: transport
               containerPort: 9300
           volumeMounts:
-            - name: gerlaw-mcp-opensearch
+            - name: court-decisions-mcp-opensearch
               mountPath: /usr/share/opensearch/data
   volumeClaimTemplates:
     - metadata:
-        name: gerlaw-mcp-opensearch
+        name: court-decisions-mcp-opensearch
       spec:
         accessModes: ["ReadWriteOnce"]
         resources:
