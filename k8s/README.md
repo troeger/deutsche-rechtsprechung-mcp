@@ -4,11 +4,11 @@ Das Ausrollen in Kubernetes benötigt vorbereitete Container Images für den Cra
 
 ## Schritt 1: Vorbereitung der Daten
 
-Für das Ausrollen des MCP Servers in Kubernetes ist zunächst der Download und die Vorbereitung der Daten erforderlich. Dies wird per Kubernetes-Job mit dem Docker Image "gerlaw-mcp-crawl" realisiert. Dieses schreibt in ein persistentes Volume, welches anschliessend vom "gerlaw-mcp-server" Deployment eingebunden wird.
+Für das Ausrollen des MCP Servers in Kubernetes ist zunächst der Download und die Vorbereitung der Daten erforderlich. Dies wird per Kubernetes-Job mit dem Docker Image "court-decisions-mcp-crawl" realisiert. Dieses schreibt in ein persistentes Volume, welches anschliessend vom "court-decisions-mcp-server" Deployment eingebunden wird.
 
 Die Ausführung des Crawl Jobs erfolgt mit:
 
-`kubectl -n <namespace> apply -k gerlaw-mcp-crawl/production`
+`kubectl -n <namespace> apply -k court-decisions-mcp-crawl/production`
 
 Für die Aktualisierung der Daten muss lediglich der Job erneut ausgeführt werden. Name und Registry für das Container Image des Crawl-Jobs können ggf. angepasst werden.
 
@@ -20,5 +20,5 @@ Der MCP-Server benötigt eine laufende OpenSearch-Instanz:
 
 Anschliessend kann der Server gestartet werden:
 
-`kubectl -n <namespace> apply -k gerlaw-mcp-server/production`
+`kubectl -n <namespace> apply -k court-decisions-mcp-server/production`
 

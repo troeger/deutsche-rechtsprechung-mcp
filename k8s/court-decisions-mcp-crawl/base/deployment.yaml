@@ -1,14 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: gerlaw-mcp-crawl
+  name: court-decisions-mcp-crawl
 spec:
   template:
     spec:
       restartPolicy: OnFailure
       containers:
-        - name: gerlaw-mcp-crawl
-          image: gerlaw-mcp-crawl
+        - name: court-decisions-mcp-crawl
+          image: court-decisions-mcp-crawl
           resources:
             requests:
               cpu: "4"
@@ -18,4 +18,4 @@ spec:
       volumes:
         - name: markdown-data
           persistentVolumeClaim:
-            claimName: gerlaw-mcp-markdown
+            claimName: court-decisions-mcp-markdown

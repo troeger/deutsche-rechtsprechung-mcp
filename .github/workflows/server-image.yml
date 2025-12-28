@@ -22,7 +22,7 @@ jobs:
 
       - name: Build image
         run: |
-          IMAGE="ghcr.io/${{ github.repository }}/gerlaw-mcp-server"
+          IMAGE="ghcr.io/${{ github.repository }}/court-decisions-mcp-server"
           TAG="${{ github.sha }}"
           cd mcp
           docker build . --tag "${IMAGE}:${TAG}"
@@ -31,6 +31,6 @@ jobs:
       - name: Push image
         if: github.event_name == 'push'
         run: |
-          IMAGE="ghcr.io/${{ github.repository }}/gerlaw-mcp-server"
+          IMAGE="ghcr.io/${{ github.repository }}/court-decisions-mcp-server"
           docker push "${IMAGE}:${{ github.sha }}"
           docker push "${IMAGE}:latest"

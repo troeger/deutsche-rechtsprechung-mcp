@@ -57,5 +57,5 @@ python convert_all_to_md.py
 
 Der Download und das Parsen der Daten kann auch durch ein Docker Image ausgeführt werden. Im Gegensatz zur direkten Ausführung der Skripte werden die Markdown-Daten ebenfalls im `data`-Ordner gespeichert:
 
-`docker build . -t gerlaw-mcp-crawl`
-`docker run -v ./data/:/app/data/ gerlaw-mcp-crawl`
+`docker build . -t court-decisions-mcp-crawl`
+`docker run -v ./data/:/app/data/ court-decisions-mcp-crawl`

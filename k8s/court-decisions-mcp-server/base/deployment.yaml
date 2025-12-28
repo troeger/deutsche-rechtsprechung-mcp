@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gerlaw-mcp-server
+  name: court-decisions-mcp-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gerlaw-mcp-server
+      app: court-decisions-mcp-server
   template:
     metadata:
       labels:
-        app: gerlaw-mcp-server
+        app: court-decisions-mcp-server
     spec:
       containers:
-        - name: gerlaw-mcp-server
-          image: gerlaw-mcp-server
+        - name: court-decisions-mcp-server
+          image: court-decisions-mcp-server
           ports:
             - containerPort: 8002
           env:
             - name: OPENSEARCH_HOST
-              value: gerlaw-mcp-opensearch
+              value: court-decisions-mcp-opensearch
             - name: OPENSEARCH_PORT
               value: "9200"
             - name: OPENSEARCH_USER
@@ -27,7 +27,7 @@ spec:
             - name: OPENSEARCH_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: gerlaw-mcp-opensearch
+                  name: court-decisions-mcp-opensearch
                   key: OPENSEARCH_ADMIN_PASSWORD
             - name: MARKDOWN_DIR
               value: /markdown_data
@@ -37,4 +37,4 @@ spec:
       volumes:
         - name: markdown-data
           persistentVolumeClaim:
-            claimName: gerlaw-mcp-markdown
+            claimName: court-decisions-mcp-markdown
